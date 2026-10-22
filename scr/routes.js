@@ -1,15 +1,20 @@
-const express = require("express")
-const routes = express.Router()
+const express = require('express');
+const router = express.Router();
 
-const Usuario = require("./controllers/usuario") 
-const Evento = require('../scr/controllers/eventos');
+// Importação dos dois controladores mapeados
+const usuarioController = require('./controllers/usuario');
+const eventoController = require('./controllers/eventos');
 
-routes.post("/usuarios", Usuario.cadastrar)
-routes.get("/usuarios", Usuario.listar)
+// 👤 CRUD COMPLETO: Usuários
+router.post('/usuarios', usuarioController.cadastrar);
+router.get('/usuarios', usuarioController.listar);
+router.put('/usuarios/:id', usuarioController.atualizar);
+router.delete('/usuarios/:id', usuarioController.excluir);
 
-routes.post("/eventos", Evento.cadastrar)
-routes.get("/eventos", Evento.listar)
+// 📅 CRUD COMPLETO: Eventos
+router.post('/eventos', eventoController.cadastrar);
+router.get('/eventos', eventoController.listar);
+router.put('/eventos/:id', eventoController.atualizar);
+router.delete('/eventos/:id', eventoController.excluir);
 
-
-
-module.exports = routes
+module.exports = router;
